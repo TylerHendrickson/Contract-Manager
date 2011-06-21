@@ -1,0 +1,344 @@
+body {
+    background-color:#D0E2EF;
+    font-family: verdana;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#tab table {
+    width: 100%;
+}
+
+table {
+    margin: 5px;
+    text-align: center;
+    border-color: #a8cff0;
+    border-width: 0;
+    border-spacing: 5px;
+}
+
+table a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+.top td {
+    background-color:#31618a;
+    font-size: 16px;
+}
+
+.bottom td {
+    background-color:#a9a9aa;
+    font-size: 14px;
+    color: #FFF;
+}
+
+#content {
+    max-width: 800px;
+    margin-left: 5%;
+}
+
+.main_content {
+    text-align: left;
+    position: relative;
+}
+
+.main_content input {
+    margin: 5px;
+}
+
+.main_content select {
+    margin: 5px;
+}
+
+.mc_left {
+    display: block;
+    float: left;
+    text-align: left;
+}
+
+.mc_right {
+    display: block;
+    float: right;
+    text-align: left;
+}
+
+form#addcustomer input#submit {
+    margin-top: 25px;
+    float: right;
+}
+
+form#addcustomer input#contact_name {
+    margin-left: 15px;
+}
+
+form#addcustomer input#address {
+    margin-left: 10px;
+}
+
+form#addcustomer input#phone {
+    margin-left: 13px;
+}
+
+form#addcustomer input#email {
+    margin-left: 80px;
+}
+
+form#addcustomer input#email {
+    margin-left: 80px;
+}
+
+form#addcustomer input#url {
+    margin-left: 100px;
+}
+
+form#addcustomer textarea#system_requested {
+    resize: none;
+}
+
+form#updatecustomer input#submit {
+    margin-top: 25px;
+    float: right;
+}
+
+form#updatecustomer input#con_name {
+    margin-left: 15px;
+}
+
+form#updatecustomer input#add {
+    margin-left: 10px;
+}
+
+form#updatecustomer input#phone {
+    margin-left: 13px;
+}
+
+form#updatecustomer input#email {
+    margin-left: 80px;
+}
+
+form#updatecustomer input#email {
+    margin-left: 80px;
+}
+
+form#updatecustomer input#url {
+    margin-left: 100px;
+}
+
+form#updatecustomer textarea#system_requested {
+    resize: none;
+}
+
+form#deletecustomer input#submit {
+    margin-top: 25px;
+    float: right;
+}
+
+form#deletecustomer input#con_name {
+    margin-left: 15px;
+}
+
+form#deletecustomer input#add {
+    margin-left: 10px;
+}
+
+form#deletecustomer input#phone {
+    margin-left: 13px;
+}
+
+form#deletecustomer input#email {
+    margin-left: 80px;
+}
+
+form#deletecustomer input#email {
+    margin-left: 80px;
+}
+
+form#deletecustomer input#url {
+    margin-left: 100px;
+}
+
+form#deletecustomer textarea#system_requested {
+    resize: none;
+}
+
+
+
+form#addvendor input#submit {
+    margin-top: 25px;
+    float: right;
+}
+
+form#addvendor input#contact_name {
+    margin-left: 15px;
+}
+
+form#addvendor input#address {
+    margin-left: 10px;
+}
+
+form#addvendor input#phone {
+    margin-left: 13px;
+}
+
+form#addvendor input#email {
+    margin-left: 80px;
+}
+
+form#addvendor input#email {
+    margin-left: 80px;
+}
+
+form#addvendor input#url {
+    margin-left: 100px;
+}
+
+form#addvendor input#cam_types {
+    margin-left: 15px;
+}
+
+form#addvendor input#dvr_types {
+    margin-left: 43px;
+}
+
+form#addvendor input#l_prod {
+    margin-left: 15px;
+}
+
+form#updatevendor input#submit {
+    margin-top: 25px;
+    float: right;
+}
+
+form#updatevendor input#con_name {
+    margin-left: 15px;
+}
+
+form#updatevendor input#add {
+    margin-left: 10px;
+}
+
+form#updatevendor input#phone {
+    margin-left: 13px;
+}
+
+form#updatevendor input#email {
+    margin-left: 80px;
+}
+
+form#updatevendor input#email {
+    margin-left: 80px;
+}
+
+form#updatevendor input#url {
+    margin-left: 100px;
+}
+
+form#updatevendor input#dvr_types {
+    margin-left: 43px;
+}
+
+form#updatevendor input#l_prod {
+    margin-left: 15px;
+}
+
+form#updatevendor input#cam_types {
+    margin-left: 15px;
+}
+
+form#deletevendor input#submit {
+    margin-top: 25px;
+    float: right;
+}
+
+form#deletevendor input#contact_name {
+    margin-left: 15px;
+}
+
+form#deletevendor input#address {
+    margin-left: 10px;
+}
+
+form#deletevendor input#phone {
+    margin-left: 13px;
+}
+
+form#deletevendor input#email {
+    margin-left: 80px;
+}
+
+form#deletevendor input#email {
+    margin-left: 80px;
+}
+
+form#deletevendor input#url {
+    margin-left: 100px;
+}
+
+form#deletevendor input#dvr_types {
+    margin-left: 43px;
+}
+
+form#deletevendor input#l_prod {
+    margin-left: 15px;
+}
+
+form#deletevendor input#cam_types {
+    margin-left: 15px;
+}
+
+form#adduser input#email {
+    margin-left: 40px;
+}
+
+form#changename input#old_name {
+    margin-left: 15px;
+}
+
+form#addInv input#inv_name {
+    margin-left: 30px;
+}
+
+form#addInv input#price {
+    margin-left: 38px;
+}
+
+form#addInv input#inv_num_ports {
+    margin-left: 35px;
+}
+
+form#addInv select#inv_kind {
+    margin-left: 25px;
+}
+
+form#updateInv input#inv_name {
+    margin-left: 30px;
+}
+
+form#updateInv input#price {
+    margin-left: 38px;
+}
+
+form#updateInv input#inv_num_ports {
+    margin-left: 35px;
+}
+
+form#updateInv select#inv_kind {
+    margin-left: 25px;
+}
+
+form#deleteInv input#inv_name {
+    margin-left: 30px;
+}
+
+form#deleteInv input#price {
+    margin-left: 38px;
+}
+
+form#deleteInv input#inv_num_ports {
+    margin-left: 35px;
+}
+
+form#deleteInv input#inv_kind {
+    margin-left: 25px;
+}

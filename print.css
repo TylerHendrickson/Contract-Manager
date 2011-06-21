@@ -1,0 +1,5 @@
+body {visibility:hidden;}
+#print_container {visibility:visible; position:absolute; left:0; top:0;}
+#print_button {visibility:hidden;}
+table.rtable {visibility:visible;}
+table.rtable a {color:#000;}

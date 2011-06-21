@@ -1,0 +1,14 @@
+README: Contract Manager
+---------------------------------
+CREDITS
+Author: Tyler Hendrickson
+Email: hendrickson (dot) tsh (at) gmail (dot) com
+---------------------------------
+DESCRIPTION
+Sample MVC PHP application used for creating and managing contracts with a MySQL database.
+
+REQUIREMENTS
+PHP5+Zend, MySQL
+---------------------------------
+
+That's it!  Enjoy and contact me for any questions.
