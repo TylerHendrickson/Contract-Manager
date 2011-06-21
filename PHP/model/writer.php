@@ -2,7 +2,7 @@
 
 require_once dirname(__FILE__) . './../util/db.php';
 require_once dirname(__FILE__) . './../util/util.php';
-require_once './contract.php';
+require_once dirname(__FILE__) . './contract.php';
 
 class Writer extends Contract {
 
@@ -25,22 +25,30 @@ class Writer extends Contract {
         return $this->compensationMax;
     }
 
-    function __construct($contractorId, $contracteeId, $status, $type, $compensationMin, $compensationMax) {
+    function __construct($contractId, $contractorId, $contracteeId, $status, $type, $compensationMin, $compensationMax) {
         parent::__construct($contractorId, $contracteeId, $status, $type);
+        $this->setId($contractId);
         $this->setCompensationMin($compensationMin);
         $this->setCompensationMax($compensationMax);
     }
-
+    
     private function buildContractDetailFromResult($result) {
+        $writer = Writer::buildContractDetailsFromResult($result);
+        return $writer[0];
+    }
+
+    private function buildContractDetailsFromResult($result) {
         //Define database columns
         $columns = array(
+            'contract_id',
             'compensation_min',
-            'compensation_max',
+            'compensation_max'
         );
         $map = $result->bindColumnsByArray($columns);
         $writers = array();
         while ($result->fetch()) {
-            $writer = new Writer(NULL, NULL, NULL, NULL, NULL, NULL);
+            $writer = new Writer(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+            $writer->setId($map['contract_id']);
             $writer->setCompensationMin($map['compensation_min']);
             $writer->setCompensationMax($map['compensation_max']);
             array_push($writers, $writer);
@@ -50,9 +58,8 @@ class Writer extends Contract {
 
     function getContractDetailById($writerId) {
         $db = new DB();
-        $db->beginTransaction();
-        $sql = "SELECT 'compensation_min', 'compensation_max'
-            FROM 'writers' WHERE 'contract_id' = ?";
+        $sql = "SELECT contract_id, compensation_min, compensation_max
+            FROM writers WHERE contract_id = ?";
         $result = $db->execute($sql, array($writerId));
         if ($result->rowCount() == 0) {
             return new Writer();
@@ -64,8 +71,8 @@ class Writer extends Contract {
         $writer->id = $this->createContract($writer);
         $db = new DB();
         $db->beginTransaction();
-        $sql = "INSERT INTO 'writers'
-            ('contract_id', 'compensation_min', 'compensation_max')
+        $sql = "INSERT INTO writers
+            (contract_id, compensation_min, compensation_max)
             VALUES (?, ?, ?);";
         $db->execute($sql, array(
             $writer->id,
@@ -74,20 +81,20 @@ class Writer extends Contract {
         ));
         $db->commit();
         $db->disconnect();
-        return TRUE;
+        return $writer->id;
     }
 
     function update($writer) {
-        $this->updateContract($writer);
+        //$this->updateContract($writer);
         $db = new DB();
         $db->beginTransaction();
-        $sql = "UPDATE 'writers'
-            SET 'compensation_min' = ?, 'compensation_max' = ?
-            WHERE id = ? LIMIT 1;";
+        $sql = "UPDATE writers
+            SET compensation_min = ?, compensation_max = ?
+            WHERE contract_id = ? LIMIT 1;";
         $db->execute($sql, array(
-            $writer->compensationMin,
-            $writer->compensationMax,
-            $writer->id
+            $writer->getCompensationMin(),
+            $writer->getCompensationMax(),
+            $writer->getId()
         ));
         $db->commit();
         $db->disconnect();
@@ -98,7 +105,7 @@ class Writer extends Contract {
         //Delete child row first to protect against orphan records
         $db = new DB();
         $db->beginTransaction();
-        $sql = "DELETE FROM 'writers' WHERE 'id' = ? LIMIT 1;";
+        $sql = "DELETE FROM writers WHERE id = ? LIMIT 1;";
         $db->execute($sql, array($writer->id));
         $db->commit();
         $db->disconnect();

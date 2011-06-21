@@ -31,18 +31,23 @@ class Photographer extends Contract {
         $this->setCompensationMin($compensationMin);
         $this->setCompensationMax($compensationMax);
     }
-
+    
     private function buildContractDetailFromResult($result) {
+        $photographer = Photographer::buildContractDetailsFromResult($result);
+        return $photographer[0];
+    }
+
+    private function buildContractDetailsFromResult($result) {
         //Define database columns
         $columns = array(
             'contract_id',
             'compensation_min',
-            'compensation_max',
+            'compensation_max'
         );
         $map = $result->bindColumnsByArray($columns);
         $photographers = array();
         while ($result->fetch()) {
-            $photographer = new Photographer(NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+            $photographer = new Photographer(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
             $photographer->setId($map['contract_id']);
             $photographer->setCompensationMin($map['compensation_min']);
             $photographer->setCompensationMax($map['compensation_max']);
@@ -53,7 +58,6 @@ class Photographer extends Contract {
 
     function getContractDetailById($photographerId) {
         $db = new DB();
-        $db->beginTransaction();
         $sql = "SELECT contract_id, compensation_min, compensation_max
             FROM photographers WHERE contract_id = ?";
         $result = $db->execute($sql, array($photographerId));
@@ -81,16 +85,16 @@ class Photographer extends Contract {
     }
 
     function update($photographer) {
-        $this->updateContract($photographer);
+        //$this->updateContract($photographer);
         $db = new DB();
         $db->beginTransaction();
         $sql = "UPDATE photographers
             SET compensation_min = ?, compensation_max = ?
-            WHERE id = ? LIMIT 1;";
+            WHERE contract_id = ? LIMIT 1;";
         $db->execute($sql, array(
-            $photographer->compensationMin,
-            $photographer->compensationMax,
-            $photographer->id
+            $photographer->getCompensationMin(),
+            $photographer->getCompensationMax(),
+            $photographer->getId()
         ));
         $db->commit();
         $db->disconnect();

@@ -24,7 +24,7 @@ switch ($action) {
 function create($contractorId, $contracteeId, $contractType) {
     switch ($contractType) {
         case 'photographer':
-            $contract = new Photographer($contractorId, $contracteeId, 'Incomplete', $contractType, NULL, NULL);
+            $contract = new Photographer(NULL, $contractorId, $contracteeId, 'Incomplete', $contractType, NULL, NULL);
             break;
         case 'writer':
             $contract = new Writer($contractorId, $contracteeId, 'Incomplete', $contractType, NULL, NULL);
@@ -39,7 +39,14 @@ function create($contractorId, $contracteeId, $contractType) {
 }
 
 function update($contractId, $compensationMin, $compensationMax, $contractorSignature, $contractorSigndate) {
-    $contract = Photographer::getContractDetailById($contractId);
+    switch ($_POST['contract_type']) {
+        case 'photographer':
+            $contract = Photographer::getContractDetailById($contractId);
+            break;
+        case 'writer':
+            $contract = Writer::getContractDetailById($contractId);
+            break;
+    }
     $contract->setCompensationMin($compensationMin);
     $contract->setCompensationMax($compensationMax);
     $update = $contract->update($contract);
